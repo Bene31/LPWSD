@@ -1,0 +1,115 @@
+<ui:composition template="/WEB-INF/templates/layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="content">
+        <h2 class="page-header">Gerenciar Respostas</h2>
+        <br/>
+        <h:form id="formPrincipal">
+            <div align="center">
+                
+                <p:dataTable var="lista" value="#{respostaBean.respostas}"
+                             id="tabelaAssunto" emptyMessage="Nenhum registro encontrado"
+                             paginatorTemplate="{RowsPerPageDropdown} {CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                             paginator="true" rows="10" rowsPerPageTemplate="5,10,25,50,100,9999" style="width:100%">
+
+                    <p:column headerText="Código" sortBy="#{lista.idResposta}" filterBy="#{lista.idResposta}">
+                        <h:outputText value="#{lista.idResposta}" />
+                    </p:column>
+                    
+                    <p:column headerText="Resposta Correta" sortBy="#{lista.respostaCorreta}" filterBy="#{lista.respostaCorreta}">
+                        <h:outputText value="#{lista.respostaCorreta}" />
+                    </p:column>
+
+                    <p:column headerText="Justificativa" sortBy="#{lista.justificativa}" filterBy="#{lista.justificativa}">
+                        <h:outputText value="#{lista.justificativa}" />
+                    </p:column>
+                    
+                    <p:column headerText="Opção" sortBy="#{lista.opcao}" filterBy="#{lista.opcao}">
+                        <h:outputText value="#{lista.opcao}" />
+                    </p:column>
+                   
+                    
+                    <p:column headerText="Opções" exportable="false">
+                        <center>
+                            
+                            <p:commandButton icon="ui-icon-pencil" value="Editar" onclick="PF('record').show();"> 
+                                <f:setPropertyActionListener target="#{respostaBean.resposta}" value="#{lista}" />
+                            </p:commandButton>
+                            
+                            <p:commandButton icon="ui-icon-trash" value="Deletar" onclick="PF('remove').show();"> 
+                                <f:setPropertyActionListener target="#{respostaBean.resposta}" value="#{lista}" />
+                            </p:commandButton> 
+                        
+                        </center>
+                    </p:column>
+
+                </p:dataTable>
+            </div>
+            <br/>
+            
+            <p:column>
+                <p:commandButton icon="ui-icon-plus" value="Novo" onclick="PF('record').show();">  
+                </p:commandButton> 
+            </p:column>
+            
+            <div align="center">
+                <h3>Exportar dados da página</h3>
+
+                <!--h:commandLink id="excel">
+                    <p:graphicImage name="./images/exports/excel.png" />
+                    <p:dataExporter type="xls" target="tabelaAssunto" fileName="respostas" postProcessor="{respostaBean.postProcessXLS}" />
+                </h:commandLink>
+
+                <h:commandLink id="pdf">
+                    <p:graphicImage name="./images/exports/pdf.png" />
+                    <p:dataExporter type="pdf" target="tabelaAssunto" fileName="respostas" preProcessor="{respostaBean.preProcessPDF}" />
+                </h:commandLink-->
+
+
+                <h:commandLink>
+                    <p:graphicImage name="./images/exports/csv.png" width="24"/>
+                    <p:dataExporter type="csv" target="tabelaAssunto" fileName="respostas" />
+                </h:commandLink>
+
+                <h:commandLink>
+                    <p:graphicImage  name="./images/exports/xml.png" width="24"/>
+                    <p:dataExporter type="xml" target="tabelaUsuarios" fileName="respostas" />
+                </h:commandLink>
+            </div>
+
+            <p:confirmDialog global="true">  
+                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  
+                <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />  
+            </p:confirmDialog>  
+
+
+            <p:dialog header="Novo" widgetVar="record" modal="true" focus="respostaCorreta">
+                <p:panelGrid id="panelRecord" columns="2"> 
+                    RESPOSTA CORRETA:
+                    <p:inputText id="respostaCorreta" value="#{respostaBean.resposta.respostaCorreta}" />
+                    JUSTIFICATIVA:
+                    <p:inputText id="cpf" value="#{respostaBean.resposta.justificativa}" />
+                    OPÇÃO:
+                    <p:inputText id="email" value="#{respostaBean.resposta.opcao}" />
+                    QUESTAO:
+                    <p:selectOneMenu id="idCurso" value="#{respostaBean.resposta.questaoIdQuestao}" style="width:250px">
+                                     <f:selectItem itemLabel="Selecione um Curso" itemValue="0"/>
+                                     <f:selectItems value="#{questaoBean.questao}" var="q" itemValue="#{q}" itemLabel="#{q.idQuestao}"/>
+                    </p:selectOneMenu>
+                    
+                </p:panelGrid>  
+                <br/>
+                <p:commandButton value="Salvar" actionListener="#{respostaBean.Record}" onclick="record.hide()" alt="Record"/> 
+            </p:dialog>
+            
+            <p:dialog header="Deletar" widgetVar="remove" modal="false"> 
+                Você tem certeza?
+                <p:commandButton value="Deletar" actionListener="#{respostaBean.Exclude}" onclick="remove.hide()" alt="Delete" /> 
+            </p:dialog>
+            
+        </h:form>
+    </ui:define>
+</ui:composition>
