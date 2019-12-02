@@ -20,17 +20,16 @@ DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
 
 CREATE  TABLE IF NOT EXISTS `enade`.`usuario` (
-  `id_usuario` INT(11) NOT NULL AUTO_INCREMENT ,
+  `id_usuario` INT(11) NOT NULL AUTO_INCREMENT primary key,
   `nm_usuario` VARCHAR(255) NOT NULL ,
   `cpf` VARCHAR(15) NOT NULL UNIQUE,
   `email` VARCHAR(45) NOT NULL ,
   `tipo_usuario` ENUM('A', 'P', 'M') NOT NULL ,
-  `id_curso` int null,
+  `id_curso` int,
  -- `reset` TINYINT(4) NOT NULL ,*/
   `senha` VARCHAR(45) NOT NULL ,
-  PRIMARY KEY (`id_usuario`) ,
-  CONSTRAINT `fk_usuario_curso` FOREIGN KEY (`id_curso` ) REFERENCES `enade`.`curso` (`id_curso` )
-  ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `fk_usuario_curso` FOREIGN KEY (`id_curso` ) 
+  REFERENCES `enade`.`curso` (`id_curso` ) 
   )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
@@ -42,15 +41,14 @@ INSERT INTO usuario (nm_usuario, cpf, email, tipo_usuario, senha) VALUES
 
 CREATE  TABLE IF NOT EXISTS `enade`.`prova` (
   `id_prova` INT(11) NOT NULL AUTO_INCREMENT ,
-  `ano` YEAR NOT NULL ,
-  `curso_id_curso` INT(11) NOT NULL ,
+  `ano` varchar(4) NOT NULL ,
+  `curso_id_curso` INT(11) NULL ,
   PRIMARY KEY (`id_prova`) ,
   INDEX `fk_prova_curso1_idx` (`curso_id_curso` ASC) ,
   CONSTRAINT `fk_prova_curso1`
     FOREIGN KEY (`curso_id_curso` )
     REFERENCES `enade`.`curso` (`id_curso` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+   )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
@@ -59,12 +57,11 @@ CREATE  TABLE IF NOT EXISTS `enade`.`questao` (
   `id_questao` INT(11) NOT NULL AUTO_INCREMENT ,
   `descricao_questao` VARCHAR(255) NOT NULL ,
   `tipo_questao` ENUM('discursiva geral', 'objetiva geral', 'discursiva especifica', 'objetiva especifica') not null ,
-  `prova_id_prova` INT(11) NOT NULL ,
+  `prova_id_prova` INT(11)  NULL ,
   PRIMARY KEY (`id_questao`) ,
     FOREIGN KEY (`prova_id_prova` )
     REFERENCES `enade`.`prova` (`id_prova` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+   )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
@@ -72,7 +69,7 @@ COLLATE = utf8_unicode_ci;
 CREATE  TABLE IF NOT EXISTS `enade`.`resposta` (
   `id_resposta` INT(11) NOT NULL AUTO_INCREMENT ,
   `resposta_correta` VARCHAR(45) NOT NULL ,
-  `questao_id_questao` INT(11) NOT NULL ,
+  `questao_id_questao` INT(11) NULL ,
   `justificativa` VARCHAR(255) NOT NULL ,
   `opcao` VARCHAR(45) NOT NULL ,
   PRIMARY KEY (`id_resposta`) ,
@@ -80,8 +77,7 @@ CREATE  TABLE IF NOT EXISTS `enade`.`resposta` (
   CONSTRAINT `fk_resposta_questao1`
     FOREIGN KEY (`questao_id_questao` )
     REFERENCES `enade`.`questao` (`id_questao` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+    )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
@@ -118,18 +114,15 @@ CREATE  TABLE IF NOT EXISTS `enade`.`usuario_has_questao` (
   CONSTRAINT `fk_usuario_has_questao_usuario1`
     FOREIGN KEY (`usuario_id_usuario` )
     REFERENCES `enade`.`usuario` (`id_usuario` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
+    ,
   CONSTRAINT `fk_usuario_has_questao_questao1`
     FOREIGN KEY (`questao_id_questao`)
     REFERENCES `enade`.`questao` (`id_questao`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
+    ,
   CONSTRAINT `fk_usuario_has_questao_resposta1`
     FOREIGN KEY (`resposta_id_resposta` )
     REFERENCES `enade`.`resposta` (`id_resposta` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+    )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
