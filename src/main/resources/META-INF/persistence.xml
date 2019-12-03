@@ -4,6 +4,10 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>model.Usuario</class>
     <class>model.Curso</class>
+    <class>model.Prova</class>
+    <class>model.Questao</class>
+    <class>model.Resposta</class>
+    <class>model.UsuarioHasQuestao</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3307/enade?zeroDateTimeBehavior=convertToNull"/>

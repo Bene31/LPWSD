@@ -5,6 +5,8 @@
  */
 package bean;
 
+import converter.ProvaConverter;
+import dao.ProvaDao;
 import model.Questao;
 import dao.QuestaoDao;
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
+import model.Prova;
 
 /**
  *
@@ -22,12 +25,20 @@ import javax.faces.event.ActionEvent;
 public class questaoBean {
     
     Questao questao = new Questao();
-    
+    private List<Prova> provas;
+    private Prova idProva;
+    private QuestaoDao questaoDao;
+    private ProvaDao provaDao;
+    private ProvaConverter pcc;
     List questoes = new ArrayList();
 
     public questaoBean() {
         questoes = new QuestaoDao().buscarTodas();
         questao = new Questao();
+        provas = new ProvaDao().buscarTodas();
+        provaDao = new ProvaDao();
+        questaoDao = new QuestaoDao();
+        pcc = new ProvaConverter();
     }
     
     public void Record(ActionEvent actionEvent)
@@ -62,5 +73,46 @@ public class questaoBean {
     public void setQuestoes(List questoes) {
         this.questoes = questoes;
     }
+
+    public List<Prova> getProvas() {
+        return provas;
+    }
+
+    public void setProvas(List<Prova> provas) {
+        this.provas = provas;
+    }
+
+    public Prova getIdProva() {
+        return idProva;
+    }
+
+    public void setIdProva(Prova idProva) {
+        this.idProva = idProva;
+    }
+
+    public QuestaoDao getQuestaoDao() {
+        return questaoDao;
+    }
+
+    public void setQuestaoDao(QuestaoDao questaoDao) {
+        this.questaoDao = questaoDao;
+    }
+
+    public ProvaDao getProvaDao() {
+        return provaDao;
+    }
+
+    public void setProvaDao(ProvaDao provaDao) {
+        this.provaDao = provaDao;
+    }
+
+    public ProvaConverter getPcc() {
+        return pcc;
+    }
+
+    public void setPcc(ProvaConverter pcc) {
+        this.pcc = pcc;
+    }
+    
     
 }

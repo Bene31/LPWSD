@@ -6,7 +6,6 @@
 package bean;
 
 import converter.CursoConverter;
-import converter.CursoUsuarioConverter;
 import dao.CursoDao;
 import model.Usuario;
 import dao.UsuarioDao;
@@ -33,11 +32,10 @@ public class usuarioBean {
     Usuario usuario = new Usuario();
     List usuarios = new ArrayList();
     private List<Curso> cursos;
-    private Curso curso;
+    private Curso idCurso;
     private UsuarioDao usuarioDao;
     private CursoDao cursoDao;
-    private CursoConverter cc;
-    private CursoUsuarioConverter cuc;
+    private CursoConverter cuc;
 
     public usuarioBean() {
         usuarios = new UsuarioDao().buscarTodas();
@@ -45,8 +43,7 @@ public class usuarioBean {
         cursos = new CursoDao().buscarTodas();
         cursoDao = new CursoDao();
         usuarioDao = new UsuarioDao();
-        cc = new CursoConverter();
-        cuc = new CursoUsuarioConverter();
+        cuc = new CursoConverter();
     }
     
     public void Record(ActionEvent actionEvent)
@@ -128,29 +125,20 @@ public class usuarioBean {
         this.cursoDao = cursoDao;
     }
 
-    public CursoConverter getCc() {
-        return cc;
-    }
-
-    public void setCc(CursoConverter cc) {
-        this.cc = cc;
-    }
-
-    public CursoUsuarioConverter getCuc() {
+    public CursoConverter getCuc() {
         return cuc;
     }
 
-    public void setCuc(CursoUsuarioConverter cuc) {
+    public void setCuc(CursoConverter cuc) {
         this.cuc = cuc;
     }
 
-    public Curso getCurso() {
-        return curso;
+    public Curso getIdCurso() {
+        return idCurso;
     }
 
-    public void setCurso(Curso curso) {
-        this.curso = curso;
+    public void setIdCurso(Curso idCurso) {
+        this.idCurso = idCurso;
     }
-    
     
 }

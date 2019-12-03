@@ -6,6 +6,7 @@
 package dao;
 
 import model.Usuario;
+import bean.cursoBean;
 import bd.PersistenceUtil;
 import java.util.List;
 import javax.persistence.EntityManager;

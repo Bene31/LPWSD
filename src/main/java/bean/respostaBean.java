@@ -5,6 +5,8 @@
  */
 package bean;
 
+import converter.QuestaoConverter;
+import dao.QuestaoDao;
 import model.Resposta;
 import dao.RespostaDao;
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
+import model.Questao;
 
 /**
  *
@@ -22,12 +25,20 @@ import javax.faces.event.ActionEvent;
 public class respostaBean {
     
     Resposta resposta = new Resposta();
-    
+    private List<Questao> questoes;
+    private Questao idQuestao;
+    private RespostaDao respostaDao;
+    private QuestaoDao questaoDao;
+    private QuestaoConverter qcc;
     List respostas = new ArrayList();
 
     public respostaBean() {
         respostas = new RespostaDao().buscarTodas();
         resposta = new Resposta();
+        questoes = new QuestaoDao().buscarTodas();
+        questaoDao = new QuestaoDao();
+        respostaDao = new RespostaDao();
+        qcc = new QuestaoConverter();
     }
     
     public void Record(ActionEvent actionEvent)
@@ -62,5 +73,47 @@ public class respostaBean {
     public void setRespostas(List respostas) {
         this.respostas = respostas;
     }
+
+    public List<Questao> getQuestoes() {
+        return questoes;
+    }
+
+    public void setQuestoes(List<Questao> questoes) {
+        this.questoes = questoes;
+    }
+
+    public Questao getIdQuestao() {
+        return idQuestao;
+    }
+
+    public void setIdQuestao(Questao idQuestao) {
+        this.idQuestao = idQuestao;
+    }
+
+    public RespostaDao getRespostaDao() {
+        return respostaDao;
+    }
+
+    public void setRespostaDao(RespostaDao respostaDao) {
+        this.respostaDao = respostaDao;
+    }
+
+    public QuestaoDao getQuestaoDao() {
+        return questaoDao;
+    }
+
+    public void setQuestaoDao(QuestaoDao questaoDao) {
+        this.questaoDao = questaoDao;
+    }
+
+    public QuestaoConverter getQcc() {
+        return qcc;
+    }
+
+    public void setQcc(QuestaoConverter qcc) {
+        this.qcc = qcc;
+    }
+    
+    
     
 }

@@ -72,12 +72,12 @@
             <p:dialog header="Novo" widgetVar="record" modal="true" focus="ano">
                 <p:panelGrid id="panelRecord" columns="2"> 
                     ANO:
-                    <p:inputText id="ano" value="#{provaBean.prova.ano}" />
-                    CURSO:
-                    <p:selectOneMenu id="idCurso" value="#{provaBean.prova.idCurso}" style="width:250px">
+                    <p:inputText id="ano" value="#{provaBean.prova.ano}" onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;"/>
+                    <!--CURSO:
+                    <p:selectOneMenu id="idCurso" value="#{provaBean.prova.idCurso}" style="width:250px" converter="#{CursoConverter}">
                                      <f:selectItem itemLabel="Selecione um Curso" itemValue="0"/>
                                      <f:selectItems value="#{cursoBean.cursos}" var="c" itemValue="#{c}" itemLabel="#{c.nmCurso}"/>
-                    </p:selectOneMenu>
+                    </p:selectOneMenu-->
                 </p:panelGrid>  
                 <br/>
                 <p:commandButton value="Salvar" actionListener="#{provaBean.Record}" onclick="record.hide()" alt="Record"/> 

@@ -23,9 +23,9 @@
                         <h:outputText value="#{lista.descricaoQuestao}" />
                     </p:column>
 
-                    <p:column headerText="Prova" sortBy="#{lista.provaIdProva}" filterBy="#{lista.provaIdProva}">
+                    <!--p:column headerText="Prova" sortBy="#{lista.provaIdProva}" filterBy="#{lista.provaIdProva}">
                         <h:outputText value="#{lista.provaIdProva}" />
-                    </p:column>
+                    </p:column-->
                     
                     <p:column headerText="Tipo de Questão" sortBy="#{lista.tipoQuestao}" filterBy="#{lista.tipoQuestao}">
                         <h:outputText value="#{lista.tipoQuestao}" />
@@ -77,20 +77,20 @@
             <p:dialog header="Novo" widgetVar="record" modal="true" focus="descricao">
                 <p:panelGrid id="panelRecord" columns="2"> 
                     DESCRIÇÃO:
-                    <p:inputText id="descricao" value="#{questaoBean.questao.descricaoQuestao}" />
+                    <p:inputTextarea id="descricao" value="#{questaoBean.questao.descricaoQuestao}" />
                     TIPO DA QUESTÃO:
-                    <p:selectOneMenu id="tipo" value="#{usuarioBean.usuario.tipoUsuario}">
+                    <p:selectOneMenu id="tipo" value="#{questaoBean.questao.tipoQuestao}">
                         <f:selectItem itemLabel="Selecione o Tipo de Questão" itemValue="0"></f:selectItem>
                         <f:selectItem itemLabel="Discursiva Geral" itemValue="discursiva geral"></f:selectItem>
                         <f:selectItem itemLabel="Objetiva Geral" itemValue="objetiva geral"></f:selectItem>
                         <f:selectItem itemLabel="Discursiva Especifica" itemValue="discursiva especifica"></f:selectItem>
                         <f:selectItem itemLabel="Objetiva Especifica" itemValue="objetiva especifica"></f:selectItem>
                     </p:selectOneMenu>
-                    PROVA:
-                    <p:selectOneMenu id="idCurso" value="#{questaoBean.questao.prova}" style="width:250px">
+                    <!--PROVA:
+                    <p:selectOneMenu id="idCurso" value="#{questaoBean.questao.prova}" style="width:250px" converter="#{ProvaConverter}">
                                      <f:selectItem itemLabel="Selecione a prova" itemValue="0"/>
-                                     <f:selectItems value="#{provaBean.provas}" var="c" itemValue="#{p}" itemLabel="#{p.idProva}"/>
-                    </p:selectOneMenu>                   
+                                     <f:selectItems value="#{provaBean.provas}" var="p" itemValue="#{p}" itemLabel="#{p.idProva}"/>
+                    </p:selectOneMenu-->                   
                 </p:panelGrid>  
                 <br/>
                 <p:commandButton value="Salvar" actionListener="#{questaoBean.Record}" onclick="record.hide()" alt="Record"/> 

@@ -16,13 +16,15 @@
                     <p:menuitem value="Cursos" icon="ui-icon-person" url="/faces/curso.xhtml"
                                 rendered="#{usuario.tipoUsuario.equals('M')}"/>
                     <p:menuitem value="Provas" icon="ui-icon-person" url="/faces/prova.xhtml"
-                                rendered="#{usuario.tipoUsuario.equals('P')}"/>                               
+                                rendered="#{usuario.tipoUsuario.equals('P') }"/>                               
                     <p:menuitem value="Questões" icon="ui-icon-person" url="/faces/questao.xhtml"
-                                rendered="#{usuario.tipoUsuario.equals('P')}"/>
+                                rendered="#{usuario.tipoUsuario.equals('P') }"/>
                     <p:menuitem value="Resposta" icon="ui-icon-person" url="/faces/resposta.xhtml"
-                                rendered="#{usuario.tipoUsuario.equals('P')}"/>
+                                rendered="#{usuario.tipoUsuario.equals('P') }"/>
+                    <p:menuitem value="Usuario x Questão" icon="ui-icon-person" url="/faces/usuarioxquestao.xhtml"
+                                rendered="#{usuario.tipoUsuario.equals('P') }"/>
                     <p:menuitem value="Simulado" icon="ui-icon-person" url="/faces/simulado.xhtml"
-                                rendered="#{usuario.tipoUsuario.equals('A')}"/>
+                                rendered="#{usuario.tipoUsuario.equals('A') }"/>
                 </p:submenu>
                 
                 <p:menuitem value="Sair" icon="ui-icon-power" url="../" />

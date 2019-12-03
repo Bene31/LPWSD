@@ -21,7 +21,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-//import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -63,9 +62,9 @@ public class Curso implements Serializable {
         @JoinColumn(name = "usuario_id_usuario", referencedColumnName = "id_usuario")})
     @ManyToMany
     private List<Usuario> usuarioList;*/
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCurso")
+    @OneToMany(mappedBy = "idCurso")
     private List<Usuario> usuarioList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCurso")
+    @OneToMany(mappedBy = "idCurso")
     private List<Prova> provaList;
 
     public Curso() {

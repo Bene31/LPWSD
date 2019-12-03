@@ -91,14 +91,14 @@
                     RESPOSTA CORRETA:
                     <p:inputText id="respostaCorreta" value="#{respostaBean.resposta.respostaCorreta}" />
                     JUSTIFICATIVA:
-                    <p:inputText id="cpf" value="#{respostaBean.resposta.justificativa}" />
+                    <p:inputTextarea id="justificativa" value="#{respostaBean.resposta.justificativa}" />
                     OPÇÃO:
-                    <p:inputText id="email" value="#{respostaBean.resposta.opcao}" />
-                    QUESTAO:
-                    <p:selectOneMenu id="idCurso" value="#{respostaBean.resposta.questaoIdQuestao}" style="width:250px">
-                                     <f:selectItem itemLabel="Selecione um Curso" itemValue="0"/>
+                    <p:inputText id="opcao" value="#{respostaBean.resposta.opcao}" />
+                    <!--QUESTAO:
+                    <p:selectOneMenu id="idCurso" value="#{respostaBean.resposta.questaoIdQuestao}" style="width:250px" converter="#{QuestaoConverter}">
+                                     <f:selectItem itemLabel="Selecione uma Questão" itemValue="0"/>
                                      <f:selectItems value="#{questaoBean.questao}" var="q" itemValue="#{q}" itemLabel="#{q.idQuestao}"/>
-                    </p:selectOneMenu>
+                    </p:selectOneMenu-->
                     
                 </p:panelGrid>  
                 <br/>

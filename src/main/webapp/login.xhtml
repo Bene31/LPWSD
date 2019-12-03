@@ -32,14 +32,41 @@
                                 </span>
                                 <p style="margin: 0; font-weight: bold;">Senha</p>
                                 <p:password id="txtSenha" value="#{usuarioBean.usuario.senha}" label="Senha" required="true" />
-                                <p style="margin: 0; font-weight: bold;">Tipo</p>
+                               
                                 
                             </h:panelGrid>
                             <p:commandButton value="Login" action="#{usuarioBean.login()}" ajax="false"/>
                         </p:panel>
                     </h:form>
+                
+                <p:column>
+                    <p:commandButton icon="ui-icon-plus" value="Novo" onclick="PF('record').show();">  
+                    </p:commandButton> 
+                </p:column>
+                
             </p:layoutUnit>
+            <h:form id="aluno">
+            <p:dialog header="Novo" widgetVar="record" modal="true" focus="name">
+                <p:panelGrid id="panelRecord" columns="2"> 
+                    NOME:
+                    <p:inputText id="name" value="#{usuarioBean.usuario.nome}" />
+                    CPF:
+                    <p:inputMask mask="999.999.999-99" id="cpf" value="#{usuarioBean.usuario.cpf}" maxlength="11" required="true" />
+                    E-MAIL:
+                    <p:inputText id="email" value="#{usuarioBean.usuario.email}" />
+                    TIPO:
+                    <p:selectOneMenu id="tipo" value="#{usuarioBean.usuario.tipoUsuario}" disabled="true">
+                        <f:selectItem itemLabel="Aluno" itemValue="A"></f:selectItem>
+                        <f:selectItem itemLabel="Admistrador" itemValue="M" ></f:selectItem>
+                        <f:selectItem itemLabel="Professor" itemValue="P" ></f:selectItem>
+                    </p:selectOneMenu>
+                    SENHA:
+                    <h:inputSecret id="senha" value="#{usuarioBean.usuario.senha}" />
+                </p:panelGrid>  
+                <br/>
+                <p:commandButton value="Salvar" actionListener="#{usuarioBean.Record}" onclick="record.hide()" alt="Record"/> 
+            </p:dialog>
+            </h:form>  
         </p:layout>
     </h:body>
 </html>
-

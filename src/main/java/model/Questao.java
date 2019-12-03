@@ -12,6 +12,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -40,9 +42,10 @@ public class Questao implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_questao")
-    private int idQuestao;
+    private Integer idQuestao;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
@@ -56,7 +59,7 @@ public class Questao implements Serializable {
     /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "questaoIdQuestao")
     private List<Resposta> respostaList;*/
     @JoinColumn(name = "prova_id_prova", referencedColumnName = "id_prova", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     private Prova prova;
     
 
@@ -69,11 +72,11 @@ public class Questao implements Serializable {
         this.tipoQuestao = tipoQuestao;
     }
 
-    public int getIdQuestao() {
+    public Integer getIdQuestao() {
         return idQuestao;
     }
 
-    public void setIdQuestao(int idQuestao) {
+    public void setIdQuestao(Integer idQuestao) {
         this.idQuestao = idQuestao;
     }
 
@@ -109,8 +112,8 @@ public class Questao implements Serializable {
 
     public void setRespostaList(List<Resposta> respostaList) {
         this.respostaList = respostaList;
-    }
-*/
+    }*/
+
     public Prova getProva() {
         return prova;
     }
@@ -146,7 +149,7 @@ public class Questao implements Serializable {
 
     @Override
     public String toString() {
-        return "Questao{" + "idQuestao=" + idQuestao + ", descricaoQuestao=" + descricaoQuestao + ", tipoQuestao=" + tipoQuestao + ", prova=" + prova + '}';
+        return "Questao{" + "idQuestao=" + idQuestao + ", descricaoQuestao=" + descricaoQuestao + ", tipoQuestao=" + tipoQuestao +'}';
     }
 
 }

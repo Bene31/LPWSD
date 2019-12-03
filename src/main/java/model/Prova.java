@@ -51,11 +51,10 @@ public class Prova implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "ano")
-    @Temporal(TemporalType.DATE)
-    private Date ano;
-    @JoinTable(name = "prova_has_usuario", joinColumns = {
+    private String ano;
+    /*@JoinTable(name = "prova_has_usuario", joinColumns = {
         @JoinColumn(name = "prova_id_prova", referencedColumnName = "id_prova")}, inverseJoinColumns = {
-        @JoinColumn(name = "usuario_id_usuario", referencedColumnName = "id_usuario")})
+        @JoinColumn(name = "usuario_id_usuario", referencedColumnName = "id_usuario")})*/
     @ManyToMany
     private List<Usuario> usuarioList;
     @JoinColumn(name = "curso_id_curso", referencedColumnName = "id_curso")
@@ -71,7 +70,7 @@ public class Prova implements Serializable {
         this.idProva = idProva;
     }
 
-    public Prova(Integer idProva, Date ano) {
+    public Prova(Integer idProva, String ano) {
         this.idProva = idProva;
         this.ano = ano;
     }
@@ -84,11 +83,11 @@ public class Prova implements Serializable {
         this.idProva = idProva;
     }
 
-    public Date getAno() {
+    public String getAno() {
         return ano;
     }
 
-    public void setAno(Date ano) {
+    public void setAno(String ano) {
         this.ano = ano;
     }
 

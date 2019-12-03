@@ -61,10 +61,10 @@ public class Resposta implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "opcao")
     private String opcao;
-    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "respostaIdResposta")
+    /*@OneToMany( mappedBy = "respostaIdResposta")
     private List<UsuarioHasQuestao> usuarioHasQuestaoList;*/
     @JoinColumn(name = "questao_id_questao", referencedColumnName = "id_questao")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     private Questao questaoIdQuestao;
 
     public Resposta() {

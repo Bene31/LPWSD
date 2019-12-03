@@ -108,11 +108,11 @@
                         <f:selectItem itemLabel="Aluno" itemValue="A"></f:selectItem>
                         <f:selectItem itemLabel="Professor" itemValue="P"></f:selectItem>
                     </p:selectOneMenu>
-                    CURSO:
-                    <p:selectOneMenu id="idCurso" value="#{usuarioBean.curso}" style="width:250px" converter="#{CursoUsuarioConverter}">
+                    <!--CURSO:
+                    <p:selectOneMenu id="idCurso" value="#{usuarioBean.usuario.idCurso}" style="width:250px" converter="#{CursoConverter}">
                                      <f:selectItem itemLabel="Selecione um Curso" itemValue="0"/>
                                      <f:selectItems value="#{usuarioBean.cursos}" var="c" itemValue="#{c}" itemLabel="#{c.nmCurso}" />
-                    </p:selectOneMenu>
+                    </p:selectOneMenu-->
                     SENHA:
                     <h:inputSecret id="senha" value="#{usuarioBean.usuario.senha}" />
                 </p:panelGrid>  
