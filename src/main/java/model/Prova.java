@@ -55,8 +55,8 @@ public class Prova implements Serializable {
     /*@JoinTable(name = "prova_has_usuario", joinColumns = {
         @JoinColumn(name = "prova_id_prova", referencedColumnName = "id_prova")}, inverseJoinColumns = {
         @JoinColumn(name = "usuario_id_usuario", referencedColumnName = "id_usuario")})*/
-    @ManyToMany
-    private List<Usuario> usuarioList;
+    /*@ManyToMany
+    private List<Usuario> usuarioList;*/
     @JoinColumn(name = "curso_id_curso", referencedColumnName = "id_curso")
     @ManyToOne(optional = false)
     private Curso idCurso;
@@ -92,13 +92,13 @@ public class Prova implements Serializable {
     }
 
     @XmlTransient
-    public List<Usuario> getUsuarioList() {
+    /*public List<Usuario> getUsuarioList() {
         return usuarioList;
     }
 
     public void setUsuarioList(List<Usuario> usuarioList) {
         this.usuarioList = usuarioList;
-    }
+    }*/
 
     public Curso getIdCurso() {
         return idCurso;
